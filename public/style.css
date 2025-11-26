@@ -1,0 +1,164 @@
+:root {
+    /* Define a professional, subtle dark theme palette */
+    --color-primary: #5a7dff; /* Accent color (e.g., for buttons/borders) */
+    --color-background: #1e1e1e; /* Dark background */
+    --color-panel-bg: rgba(30, 30, 30, 0.95); /* Semi-transparent dark panel */
+    --color-text-light: #e0e0e0;
+    --color-border: #333;
+    --color-shadow: rgba(0, 0, 0, 0.7);
+    --border-radius-base: 6px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Use the Inter font for a modern, professional look */
+    font-family: 'Inter', sans-serif; 
+    color: var(--color-text-light);
+    overflow: hidden; 
+}
+
+/* --- Game Container & Canvas --- */
+
+.game-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 100%; 
+    height: 100%;
+}
+
+/* --- Generic UI Panels (Consistent Styling) --- */
+
+.ui-panel {
+    position: absolute;
+    background: var(--color-panel-bg);
+    padding: 12px 15px;
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 10px var(--color-shadow);
+    border: 1px solid var(--color-border);
+    pointer-events: auto; /* Allow interaction */
+    z-index: 10; 
+}
+
+.ui-action-button {
+    padding: 10px 15px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-base);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--color-shadow);
+    z-index: 20; /* Ensure button is above chat when chat is closed */
+}
+/* Specific Panel Positioning */
+
+.top-left-panel {
+    top: 15px;
+    left: 15px;
+    pointer-events: none; /* Let clicks pass through if only informational */
+}
+
+.status-indicator {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    color: var(--color-primary);
+}
+
+.coord-indicator {
+    font-size: 12px;
+    margin: 0;
+}
+
+.left-panel {
+    width: 200px;
+    top: 150px; /* Positioned below the top-left status */
+    left: 15px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.panel-header {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none; /* Crucial: ensures clicks go through */
+    transform: translateY(20px);
+}
+
+#player-list .player-item {
+    padding: 4px 0;
+    font-size: 13px;
+    /* Placeholder style - will be dynamic */
+}
+
+/* --- Chat Container Styling --- */
+
+#chat-container {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 280px;
+    height: 350px;
+    background: var(--color-panel-bg);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 10px var(--color-shadow);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateY(0);
+}
+
+#messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.4;
+    /* Custom Scrollbar for subtle look */
+    scrollbar-color: var(--color-primary) var(--color-panel-bg); 
+    scrollbar-width: thin;
+}
+
+#chat-form {
+    padding: 10px;
+    border-top: 1px solid var(--color-border);
+}
+
+#message-input {
+    width: 100%; /* Now uses 100% of the form padding area */
+    padding: 10px;
+    background-color: #383838; /* Slightly lighter input field */
+    color: var(--color-text-light);
+    border: 1px solid #444;
+    border-radius: var(--border-radius-base);
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    font-family: 'Inter', sans-serif; 
+    font-size: 13px;
+}
+
+#chat-form button {
+    display: none; /* Keep the button hidden, submission is handled by Enter key */
+}
