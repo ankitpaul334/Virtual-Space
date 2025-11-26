@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gather Clone - Spatial Office</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <canvas id="gameCanvas"></canvas>
+
+        <div class="ui-panel top-left-panel">
+            <p class="status-indicator" id="status-debug">Status: Connecting...</p>
+            <p class="coord-indicator">World Coords: <span id="coord-debug">0, 0</span></p>
+        </div>
+
+        <div class="ui-panel left-panel">
+            <h3 class="panel-header">Participants</h3>
+            <div id="player-list">
+                <div class="player-item">You (Online)</div>
+            </div>
+        </div>
+        
+        <button id="chat-toggle-button" class="ui-action-button" style="position: absolute; right: 15px; bottom: 15px;">
+            Chat
+        </button>
+
+        <div id="chat-container">
+            <div id="messages">
+                </div>
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Say something..." required>
+                <button type="submit">Send</button> 
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script> 
+    <script src="game.js"></script>
+</body>
+</html>
